@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
+import NavBar from './components/NavBar'
 import FormPersonalInformation from './components/FormPersonalInformation'
 import FormContactDetails from './components/FormContactDetails'
-import NavBar from './components/NavBar'
+import FormAddress from './components/FormAddress'
+import FormEducation from './components/FormEducation'
+
 
 export class App extends Component{
   constructor(){
@@ -12,13 +15,16 @@ export class App extends Component{
     }
   }
 
-
-  pageSwitch(currentPage){
+  pageSwitch = (currentPage) =>{
     switch(currentPage){
       case 1:
-        return<FormPersonalInformation nextPage={this.nextPage}/>
+        return<FormPersonalInformation nextPage={this.nextPage} curPage={currentPage}/>
       case 2:
-        return<FormContactDetails nextPage={this.nextPage} prevPage={this.prevPage}/>
+        return<FormContactDetails nextPage={this.nextPage} prevPage={this.prevPage} curPage={currentPage}/>
+      case 3:
+        return<FormAddress nextPage={this.nextPage} prevPage={this.prevPage} curPage={currentPage}/>
+      case 4:
+        return<FormEducation nextPage={this.nextPage} prevPage={this.prevPage} curPage={currentPage}/>
     }
   }
 
@@ -37,12 +43,14 @@ export class App extends Component{
 
   render(){
     
-    const { page } = this.state
-
     return (
       <div className="App">
-        <NavBar navTitle={page == 1 ? "Personal Information" : "Contact Details"}/>
-        {this.pageSwitch(page)}
+        <NavBar navTitle={this.state.page == 1 ? "Personal Information" :
+                          this.state.page == 2 ? "Contact Details" :
+                          this.state.page == 3 ? "Address Information"
+                                               : "Educational Background"                  
+        }/>
+        {this.pageSwitch(this.state.page)}
       </div>
     )
   }

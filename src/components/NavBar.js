@@ -13,7 +13,7 @@ export class NavBar extends Component {
 
     render() {
         return (
-            <AppBar position="static">
+            <AppBar position="static" className="navBar">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                     <MenuIcon />
