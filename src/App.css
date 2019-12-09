@@ -25,7 +25,12 @@
   font-size:20px !important;
 }
 
+.radio-button-center{
+  justify-content:center;
+}
+
 h4{
   color: #5e5d5d;
   margin-bottom: 0px;
 }
+
