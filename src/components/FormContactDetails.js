@@ -15,14 +15,15 @@ export class FormContactDetails extends Component {
         
         return (
             <React.Fragment>
-            <NavBar navTitle="Personal Information"/>
+            <NavBar navTitle="Contact Information"/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={3} className="textfield-container">
                         <Grid item xs={12}>
                             <PageTracker page={values.page}/>
                         </Grid>
-                    </Grid>
-                    <Grid container position={'row'} spacing={3} className="textfield-container" justify="flex-start" alignItems="flex-start">
+                        <Grid item xs={12}>
+                            <Divider variant="middle" />
+                        </Grid>
                         <Grid item xs={12} sm={4}>
                             <TextField
                             id="outlined-basic"

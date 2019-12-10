@@ -15,18 +15,18 @@ export class FormAddress extends Component {
         
         return (
             <React.Fragment>
-            <NavBar navTitle="Personal Information"/>
+            <NavBar navTitle="Address"/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={3} className="textfield-container">
                         <Grid item xs={12}>
                             <PageTracker page={values.page}/>
+                            
                         </Grid>
-                    </Grid>
-                    <Grid container position={'row'} spacing={3} className="textfield-container" justify="flex-start" alignItems="flex-start">
                         <Grid item xs={12}>
+                            <Divider variant="middle" />
                             <h4>Permanent Address</h4>
                         </Grid>
-
+                        
                         <Grid item xs={12} sm={4}>
                             <TextField
                             id="outlined-basic"
@@ -108,7 +108,8 @@ export class FormAddress extends Component {
                             <Button variant="contained" color="primary" onClick={nextPage}>
                                 Continue
                             </Button>
-                        </Grid>
+                        
+                    </Grid>
                     </Grid>
                 </Container>
             </React.Fragment>

@@ -14,7 +14,7 @@ export class FormPersonalInformation extends Component {
 
     render() {
 
-        const { values, nextPage, prevPage, handleChange} = this.props
+        const { values, nextPage, handleChange} = this.props
         
         return (
             <React.Fragment>
@@ -23,9 +23,7 @@ export class FormPersonalInformation extends Component {
                     <Grid container position={'row'} spacing={3} className="textfield-container">
                         <Grid item xs={12}>
                             <PageTracker page={values.page}/>
-                        </Grid>
-                    </Grid>
-                    <Grid container position={'row'} spacing={3} className="textfield-container" justify="flex-start" alignItems="flex-start">
+                        </Grid>     
                         <Grid item xs={12} sm={4}>
                             <TextField
                             id="outlined-basic"
@@ -64,7 +62,6 @@ export class FormPersonalInformation extends Component {
                             id="date"
                             label="Birthday"
                             type="date"
-                            defaultValue="2019-12-10"
                             InputLabelProps={{
                             shrink: true,
                             }}
@@ -96,8 +93,8 @@ export class FormPersonalInformation extends Component {
                             onChange={handleChange('gender')}
                             >
                             <option value="" />
-                            <option value={10}>Male</option>
-                            <option value={20}>Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
 
                             </Select>
                         </FormControl>
@@ -114,9 +111,11 @@ export class FormPersonalInformation extends Component {
                             onChange={handleChange('civilStatus')}
                             >
                             <option value="" />
-                            <option value={10}>Single</option>
-                            <option value={20}>Married</option>
-                            <option value={30}>Widow</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Separated">Separated</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
                             </Select>
                         </FormControl>
                         </Grid>
@@ -132,7 +131,7 @@ export class FormPersonalInformation extends Component {
                             />
                         </Grid>
                         <Grid item xs={12} container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={this.props.nextPage}>
+                            <Button variant="contained" color="primary" onClick={nextPage}>
                                 Continue
                             </Button>
                         </Grid>

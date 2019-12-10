@@ -15,8 +15,10 @@ export class PageTracker extends Component {
             "Education",
             "Work Experience",
             "Source",
+            "Additional Questions",
             "Terms and Conditions",
-            "Confirmation"  
+            "Confirmation",
+            "Success"
         ]
 
         const Titles = titleList.map((title, i) => <FormControlLabel
