@@ -3,17 +3,10 @@ import NavBar from './NavBar'
 import PageTracker from './PageTracker'
 import { Container } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 
 //linked files are ReferralFields.js, SourceGenerator.js and ListOfSource.js
 
@@ -22,15 +15,7 @@ export class FormTermAndConditions extends Component {
     
 
     render() {
-        const { values, nextPage, prevPage, handleChange, checkAcceptTerms} = this.props
-
-        const styles = {
-            fontSize: "13px"
-        }
-
-        const validateTerms = () => {
-            
-        }
+        const { values, nextPage, prevPage, checkAcceptTerms} = this.props
 
         return (
             <React.Fragment>
@@ -98,7 +83,7 @@ export class FormTermAndConditions extends Component {
                         }
                         label="Accept the terms and conditions"
                     />
-      </Grid>
+                        </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-start">
                             <Button variant="contained" onClick={prevPage}>
                                 Back

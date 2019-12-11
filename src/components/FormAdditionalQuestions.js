@@ -6,21 +6,22 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@material-ui/core/FormControl'
+import FormLabel from '@material-ui/core/FormLabel'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 //linked files are ReferralFields.js, SourceGenerator.js and ListOfSource.js
 
 export class FormAdditionalQuestions extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, checkAdditionalQuestion} = this.props
-
+        const { values, nextPage, prevPage, handleChange, checkAdditionalQuestion, validate} = this.props
+        
+        const fields = [ values.aq_currentlyEnrolled, values.aq_studyPlan, values.aq_hireDate, values.aq_convicted, values.aq_hospitalize, values.aq_medicalCondition, values.aq_medication ]
+        
         const styles = {
             fontSize: "13px"
         }
@@ -124,8 +125,8 @@ export class FormAdditionalQuestions extends Component {
                             label="State the reason"
                             placeholder="Provide a brief explaination"
                             fullWidth
-                            defaultValue={values.aq_convictedReason}
-                            onChange={handleChange('aq_convictedReason')}
+                            defaultValue={values.aq_convictReason}
+                            onChange={handleChange('aq_convictReason')}
                             />
                         </Grid>}
 <i style={styles}>Note: No applicant will be denied of employment solely on the grounds of conviction of a criminal offense. The date of the offense, the nature of the offense, including any significant details that affect the description of the event, and the surrounding circumstances and the relevance of the offense to the position(s) applied for may, however, be considered.</i>
@@ -213,7 +214,15 @@ export class FormAdditionalQuestions extends Component {
                             onChange={handleChange('aq_medicationReason')}
                             />
                         </Grid>}
-                        <Grid item xs={12} sm={12}></Grid>
+                        {values.isError && <Grid item xs={12}>
+                            <SnackbarContent
+                                aria-describedby="client-snackbar"
+                                message={
+                                    <span id="client-snackbar">* Please fill out the required field</span>
+                                }
+                                style={{backgroundColor: "#d32f2f"}}
+                            />
+                        </Grid>}
 
 
 
@@ -224,7 +233,7 @@ export class FormAdditionalQuestions extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={()=> {checkAdditionalQuestion(); nextPage()}}>
+                            <Button variant="contained" color="primary" onClick={()=> {checkAdditionalQuestion(); validate(fields) && nextPage()}}>
                                 Continue
                             </Button>
                         </Grid>

@@ -6,13 +6,22 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 export class FormAddress extends Component {
 
 
     render() {
-        const { values, nextPage, prevPage, handleChange} = this.props
-        
+        const { values, nextPage, prevPage, handleChange, validate} = this.props
+
+        const fields = [values.permanentAddressBrgy,
+                        values.permanentAddressCity,
+                        values.permanentAddressProvince,
+                        values.currentAddressBrgy,
+                        values.currentAddressCity,
+                        values.currentAddressProvince
+                        ]
+        console.log(fields)
         return (
             <React.Fragment>
             <NavBar navTitle="Address"/>
@@ -97,6 +106,15 @@ export class FormAddress extends Component {
                             onChange={handleChange('currentAddressProvince')}
                             />
                         </Grid>
+                        {values.isError && <Grid item xs={12}>
+                            <SnackbarContent
+                                aria-describedby="client-snackbar"
+                                message={
+                                    <span id="client-snackbar">* Please fill out the required field</span>
+                                }
+                                style={{backgroundColor: "#d32f2f"}}
+                            />
+                        </Grid>}
 
 
                         <Grid item xs={6} sm={6}container justify="flex-start">
@@ -105,7 +123,7 @@ export class FormAddress extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={nextPage}>
+                            <Button variant="contained" color="primary" onClick={()=> validate(fields) && nextPage()}>
                                 Continue
                             </Button>
                         

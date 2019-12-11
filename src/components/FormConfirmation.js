@@ -4,26 +4,47 @@ import PageTracker from './PageTracker'
 import ConfirmGenerator from './ConfirmGenerator'
 import { Container } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
 
 //linked files are ReferralFields.js, SourceGenerator.js and ListOfSource.js
 
 export class FormConfirmation extends Component {
 
 
-
+        
     render() {
-        const { values, nextPage, prevPage, handleChange } = this.props
+        const { values, nextPage, prevPage } = this.props
 
+        const listOfLabel = [
+            {
+                id: "First Name",
+                content: values.firstName
+            },
+            {
+                id: "Middle Name",
+                content: values.middleName
+            },
+            {
+                id: "Last Name",
+                content: values.lastName
+            },
+            {
+                id: "Birth Day",
+                content: values.birthDay
+            },
+            {
+                id: "Mobile Number",
+                content: values.mobileNumber
+            },
+            {
+                id: "Email Address",
+                content: values.emailAddress
+            }
+
+        ]
+
+        const confirmlist = listOfLabel.map(list => <ConfirmGenerator key={list.id} values={list.content} labelName={list.id}/>)
         return (
             <React.Fragment>
             <NavBar navTitle="Confirmation"/>
@@ -36,7 +57,8 @@ export class FormConfirmation extends Component {
                             <Divider variant="middle" />
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <ConfirmGenerator/>
+                        <h4>Confirm Information</h4>
+                            {confirmlist}
                         </Grid>
 
                         <Grid item xs={12} sm={12}></Grid>
@@ -51,7 +73,7 @@ export class FormConfirmation extends Component {
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
                             <Button variant="contained" color="primary" onClick={nextPage}>
-                                Finish
+                                Confirm and Submit
                             </Button>
                         </Grid>
                     </Grid>

@@ -9,12 +9,6 @@ export class ReferralFields extends Component {
 
         const { handleChange, values } = this.props
 
-
-        const styles = {
-            display: values.mainSource === "Referrals" ? "inline-block" : "none",
-            color: "red"
-        }
-
         return (
             <Grid container position={'row'} spacing={2} className="textfield-container">
                 <Grid item xs={12} sm={5} >

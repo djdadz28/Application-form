@@ -9,11 +9,14 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import Divider from '@material-ui/core/Divider'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 export class FormEducation extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange} = this.props
+        const { values, nextPage, prevPage, handleChange, validate} = this.props
+
+        const fields = [values.highSchool, values.highSchoolGradYear ]
         
         return (
             <React.Fragment>
@@ -44,6 +47,7 @@ export class FormEducation extends Component {
                             id="outlined-basic"
                             variant="outlined"
                             label="Year"
+                            type="number"
                             placeholder="e.g. 2010"
                             className="textfield-fullwidth"
                             defaultValue={values.highSchoolGradYear}
@@ -70,6 +74,7 @@ export class FormEducation extends Component {
                             id="outlined-basic"
                             variant="outlined"
                             label="Year"
+                            type="number"
                             placeholder="e.g. 2015"
                             className="textfield-fullwidth"
                             defaultValue={values.collegeGradYear}
@@ -131,6 +136,7 @@ export class FormEducation extends Component {
                             variant="outlined"
                             label="Year"
                             placeholder="e.g. 2015"
+                            type="number"
                             className="textfield-fullwidth"
                             defaultValue={values.collegeGradYear_2}
                             onChange={handleChange('collegeGradYear_2')}
@@ -171,6 +177,15 @@ export class FormEducation extends Component {
                                 </Select>
                             </FormControl>
                         </Grid>
+                        {values.isError && <Grid item xs={12}>
+                            <SnackbarContent
+                                aria-describedby="client-snackbar"
+                                message={
+                                    <span id="client-snackbar">* Please fill out the required field</span>
+                                }
+                                style={{backgroundColor: "#d32f2f"}}
+                            />
+                        </Grid>}
 
                         <Grid item xs={6} sm={6}container justify="flex-start">
                             <Button variant="contained" onClick={prevPage}>
@@ -178,7 +193,7 @@ export class FormEducation extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={nextPage}>
+                            <Button variant="contained" color="primary" onClick={()=> validate(fields) && nextPage()}>
                                 Continue
                             </Button>
                         </Grid>

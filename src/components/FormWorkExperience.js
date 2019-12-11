@@ -13,13 +13,16 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 
 export class FormWorkExperience extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange} = this.props
+        const { values, nextPage, prevPage, handleChange, validate} = this.props
         
+        const fields = [values.workBpoExperience, values.workQualfonEmployee]
+
         return (
             <React.Fragment>
             <NavBar navTitle="Work Experience"/>
@@ -181,13 +184,24 @@ export class FormWorkExperience extends Component {
                             onChange={handleChange('workReasonForLeaving_2')}
                             />
                         </Grid>
+                        {values.isError && <Grid item xs={12}>
+                            <SnackbarContent
+                                aria-describedby="client-snackbar"
+                                message={
+                                    <span id="client-snackbar">* Please fill out the required field</span>
+                                }
+                                style={{backgroundColor: "#d32f2f"}}
+                            />
+                        </Grid>}
+
+
                         <Grid item xs={6} sm={6}container justify="flex-start">
                             <Button variant="contained" onClick={prevPage}>
                                 Back
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={nextPage}>
+                            <Button variant="contained" color="primary" onClick={()=> validate(fields) && nextPage()}>
                                 Continue
                             </Button>
                         </Grid>

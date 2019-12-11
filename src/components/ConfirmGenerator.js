@@ -6,15 +6,22 @@ import Grid from '@material-ui/core/Grid'
 export default class ConfirmGenerator extends Component {
     render() {
         
+        const { values, labelName } = this.props
+        console.log(values)
         return (
-                <TextField
+            <Grid item xs={12} sm={12}>
+            <br/>
+            <TextField
                 id="standard-read-only-input"
-                label="Complete Name"
-                defaultValue="DJ Dadz Montero Eleco"
+                label={labelName}
+                defaultValue={values}
                 InputProps={{
                     readOnly: true,
                 }}
                 />
+                
+            </Grid>
+                
         )
     }
 }

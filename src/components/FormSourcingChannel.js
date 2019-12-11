@@ -15,13 +15,16 @@ import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import Radio from '@material-ui/core/Radio'
 import Divider from '@material-ui/core/Divider'
+import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 //linked files are ReferralFields.js, SourceGenerator.js and ListOfSource.js
 
 export class FormSourcingChannel extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, checkReferralFields} = this.props
+        const { values, nextPage, prevPage, handleChange, checkReferralFields, validate} = this.props
+
+        const fields = [ values.sourceMethod, values.invitedByRecruiter, values.mainSource, values.specificSource ]
 
         const listOfRecruiters = [
                 "Aileen",
@@ -111,9 +114,9 @@ export class FormSourcingChannel extends Component {
                         </Grid>
                         <Grid item xs={12}>
                             {<SourceGenerator handleChange={handleChange} values={values}/>}
-                            {(values.mainSource === "Referrals" && values.specificSource != "" && values.specificSource != "") && <ReferralFields handleChange={handleChange} values={values}/>}
+                            {(values.mainSource === "Referrals" && values.specificSource !== "" && values.specificSource !== "") && <ReferralFields handleChange={handleChange} values={values}/>}
                         </Grid>
-                        {values.mainSource === "Job Fairs" && values.specificSource != "" && <Grid item xs={12} sm={6} >
+                        {values.mainSource === "Job Fairs" && values.specificSource !== "" && <Grid item xs={12} sm={6} >
                             <TextField
                             key="confirmation_code"
                             id="outlined-basic"
@@ -127,8 +130,15 @@ export class FormSourcingChannel extends Component {
                         </Grid>}
                         
 
-                        <Grid item xs={12}>
-                        </Grid>
+                        {values.isError && <Grid item xs={12}>
+                            <SnackbarContent
+                                aria-describedby="client-snackbar"
+                                message={
+                                    <span id="client-snackbar">* Please fill out the required field</span>
+                                }
+                                style={{backgroundColor: "#d32f2f"}}
+                            />
+                        </Grid>}
 
 
                         <Grid item xs={6} sm={6}container justify="flex-start">
@@ -137,7 +147,7 @@ export class FormSourcingChannel extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={()=>{nextPage(); checkReferralFields()}}>
+                            <Button variant="contained" color="primary" onClick={()=>{checkReferralFields(); validate(fields) && nextPage()}}>
                                 Continue
                             </Button>
                         </Grid>

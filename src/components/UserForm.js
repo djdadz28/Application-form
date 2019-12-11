@@ -8,6 +8,7 @@ import FormWorkExperience from './FormWorkExperience'
 import FormAdditionalQuestions from './FormAdditionalQuestions'
 import FormTermsAndConditions from './FormTermsAndConditions'
 import FormConfirmation from './FormConfirmation'
+import FormSuccess from './FormSuccess'
 
 export class userForm extends Component {
   constructor(){
@@ -69,19 +70,23 @@ export class userForm extends Component {
       aq_convicted: '',
       aq_convictReason: '',
       aq_hospitalize: '',
-      aq_hopistalizeReason: '',
+      aq_hospitalizeReason: '',
       aq_medicalCondition: '',
       aq_medicalConditionReason: '',
       aq_medication: '',
       aq_medicationReason: '',
-      acceptTerms: false
-    }
+      acceptTerms: false,
+      isError: false,
+      errorTimer: () => setTimeout(() => {
+        this.setState({isError: true})
+      }, 1500)}
+    
   }
 
   nextPage = () => {
-    this.setState(currentPage => {
-      return {page: currentPage.page + 1}
-    })
+      this.setState(currentPage => {
+        return {page: currentPage.page + 1}
+      })
   }
 
   prevPage = () => {
@@ -95,13 +100,13 @@ export class userForm extends Component {
     }
   
   checkReferralFields = () =>{
-    if(this.state.mainSource != "Referrals" && this.state.mainSource != ""){
+    if(this.state.mainSource !== "Referrals" && this.state.mainSource !== ""){
       this.setState({referrerFullName: '', referrerID: '', referrerMobile: ''})
     }
     if(this.state.mainSource === "Referrals" && this.state.specificSource === "Applicant Referral (ARP)"){
       this.setState({referrerID: ''})
     }
-    if(this.state.mainSource != "Job Fairs"){
+    if(this.state.mainSource !== "Job Fairs"){
       this.setState({jobFairLocation: ''})
     }
   }
@@ -117,7 +122,33 @@ export class userForm extends Component {
   checkAcceptTerms = () =>{
     this.setState({acceptTerms: !this.state.acceptTerms})
   }
-  
+
+  checkfield_filled = (list) => {
+    let timer
+    let msgTimer = () => {
+      let errorHandler = new Promise((resolve, reject) => {
+      this.setState({isError: true})  
+      timer = setTimeout(()=>{
+        resolve(this.setState({isError: false}));
+      }, 2000)
+    })
+
+      errorHandler.then(()=>{
+        clearTimeout(timer)
+        })
+      }
+
+    if(list.length){
+      for(let i = 0; i < list.length; i++){
+        if(list[i].length < 1){
+          msgTimer()
+          
+          return false
+        }
+      }
+    }
+    return true
+  }  
 
     render() {
       const { page,
@@ -134,6 +165,9 @@ export class userForm extends Component {
               emergencyFullName,
               emergencyMobile,
               relationship,
+              permanentAddressBrgy,
+              permanentAddressCity,
+              permanentAddressProvince,
               currentAddressBrgy,
               currentAddressCity,
               currentAddressProvince,
@@ -173,12 +207,13 @@ export class userForm extends Component {
               aq_convicted,
               aq_convictReason,
               aq_hospitalize,
-              aq_hopistalizeReason,
+              aq_hospitalizeReason,
               aq_medicalCondition,
               aq_medicalConditionReason,
               aq_medication,
               aq_medicationReason,
-              acceptTerms
+              acceptTerms,
+              isError
               } = this.state
       const values = { page,
               firstName,
@@ -194,6 +229,9 @@ export class userForm extends Component {
               emergencyFullName,
               emergencyMobile,
               relationship,
+              permanentAddressBrgy,
+              permanentAddressCity,
+              permanentAddressProvince,
               currentAddressBrgy,
               currentAddressCity,
               currentAddressProvince,
@@ -233,28 +271,24 @@ export class userForm extends Component {
               aq_convicted,
               aq_convictReason,
               aq_hospitalize,
-              aq_hopistalizeReason,
+              aq_hospitalizeReason,
               aq_medicalCondition,
               aq_medicalConditionReason,
               aq_medication,
               aq_medicationReason,
               acceptTerms,
+              isError
               }
 
         switch(page){
           case 1:
-            return(
-            // <FormConfirmation
-            //         values={values}
-            //         nextPage={this.nextPage}
-            //         prevPage={this.prevPage}
-            //         handleChange={this.handleChange}
-            //         />
-            
+            return(            
                     <FormPersonalInformation
                     values={values}
                     nextPage={this.nextPage}
                     handleChange={this.handleChange}
+                    validate={this.checkfield_filled}
+                    errorMsg={this.isErrorRender}
                     />
             )
           case 2:
@@ -263,6 +297,7 @@ export class userForm extends Component {
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
+                    validate={this.checkfield_filled}
                     />
             )
           case 3:
@@ -271,6 +306,7 @@ export class userForm extends Component {
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
+                    validate={this.checkfield_filled}
                     />
             )
           case 4:
@@ -279,6 +315,7 @@ export class userForm extends Component {
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
+                    validate={this.checkfield_filled}
                     />
             )
           case 5:
@@ -287,6 +324,7 @@ export class userForm extends Component {
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
+                    validate={this.checkfield_filled}
                     />
             )
           case 6:
@@ -296,6 +334,7 @@ export class userForm extends Component {
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
                     checkReferralFields={this.checkReferralFields}
+                    validate={this.checkfield_filled}
                     />
             )
             case 7:
@@ -305,6 +344,7 @@ export class userForm extends Component {
                     prevPage={this.prevPage}
                     handleChange={this.handleChange}
                     checkAdditionalQuestion={this.checkAdditionalQuestion}
+                    validate={this.checkfield_filled}
                     />
             )
             case 8:
@@ -321,9 +361,14 @@ export class userForm extends Component {
                     values={values}
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
-                    handleChange={this.handleChange}
                     />
             )
+
+            case 10:
+            return(
+              <FormSuccess values={values}/>
+            )
+
           default:
             return <FormPersonalInformation
                     values={values}
