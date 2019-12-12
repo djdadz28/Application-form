@@ -29,6 +29,7 @@ export class SourceGenerator extends Component {
                         labelWidth={90}
                         defaultValue={values.mainSource}
                         onChange={handleChange('mainSource')}
+                        required
                         >
                         <option value=""/>
                         {mainSource}
@@ -45,6 +46,7 @@ export class SourceGenerator extends Component {
                         labelWidth={112}
                         defaultValue={values.specificSource}
                         onChange={handleChange('specificSource')}
+                        required
                         >
                         <option value=""/>
                         {specificSource}

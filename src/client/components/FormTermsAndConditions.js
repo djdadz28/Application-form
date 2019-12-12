@@ -15,11 +15,11 @@ export class FormTermAndConditions extends Component {
     
 
     render() {
-        const { values, nextPage, prevPage, checkAcceptTerms} = this.props
+        const { values, nextPage, prevPage, checkAcceptTerms, logout} = this.props
 
         return (
             <React.Fragment>
-            <NavBar navTitle="Terms And Conditions"/>
+            <NavBar navTitle="Terms And Conditions" logout={logout}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position='row' spacing={3} className="textfield-container" alignItems="center" justify="center">
                         <Grid item xs={12}>

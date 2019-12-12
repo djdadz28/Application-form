@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import UserForm from './components/UserForm'
-
+import UserForm from './client/components/UserForm'
 
 
 export class App extends Component{

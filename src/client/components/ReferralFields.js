@@ -21,6 +21,7 @@ export class ReferralFields extends Component {
                     fullWidth
                     defaultValue={values.referrerFullName}
                     onChange={handleChange('referrerFullName')}
+                    required
                     />
                 </Grid>
                 <Grid item xs={6} sm={4} >
@@ -33,6 +34,7 @@ export class ReferralFields extends Component {
                     className="textfield-fullwidth"
                     defaultValue={values.referrerMobile}
                     onChange={handleChange('referrerMobile')}
+                    required
                     />
                 </Grid>
                 <Grid item xs={6} sm={3} >
@@ -45,6 +47,7 @@ export class ReferralFields extends Component {
                     className="textfield-fullwidth"
                     defaultValue={values.referrerID}
                     onChange={handleChange('referrerID')}
+                    required
                     />}
                 </Grid>
             </Grid>

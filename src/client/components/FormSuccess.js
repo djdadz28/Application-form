@@ -11,11 +11,11 @@ import Divider from '@material-ui/core/Divider'
 export class FormSucess extends Component {
 
     render() {
-        const { values } = this.props
+        const { values, registerNewApplicant, logout } = this.props
 
         return (
             <React.Fragment>
-            <NavBar navTitle="Terms And Conditions"/>
+            <NavBar navTitle="Terms And Conditions" logout={logout}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position='row' spacing={3} className="textfield-container" alignItems="center" justify="center">
                         <Grid item xs={12}>
@@ -30,7 +30,7 @@ export class FormSucess extends Component {
                         </Grid>
 
                         <Grid item xs={12} sm={12}>
-                            <Button variant="contained" color="primary" onClick={() => window.location.reload()}>
+                            <Button variant="contained" color="primary" onClick={registerNewApplicant}>
                                 Register new user
                             </Button>
                         </Grid>
