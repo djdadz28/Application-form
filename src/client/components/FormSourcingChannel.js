@@ -22,9 +22,7 @@ import Divider from '@material-ui/core/Divider'
 export class FormSourcingChannel extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, checkReferralFields, validate, logout} = this.props
-
-        const fields = [ values.sourceMethod, values.invitedByRecruiter, values.mainSource, values.specificSource ]
+        const { values, nextPage, prevPage, handleChange, logout} = this.props
 
         const listOfRecruiters = [
                 "Aileen",
@@ -68,7 +66,7 @@ export class FormSourcingChannel extends Component {
                         <Grid item xs={12}>
                             <PageTracker page={values.page}/>
                             <form id="form-sourcing-channel" onSubmit={(e)=> {e.preventDefault(); checkSourceFields() && nextPage()}}>
-                                    <Grid container position={'row'} spacing={2} justify="space-between">
+                                    <Grid container position={'row'} spacing={2} justify="center">
                                         <Grid item xs={12}>
                                             <br/><Divider variant="middle" />
                                         </Grid>

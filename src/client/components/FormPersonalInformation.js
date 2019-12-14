@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 
@@ -18,9 +17,7 @@ export class FormPersonalInformation extends Component {
 
     render() {
 
-        const { values, nextPage, handleChange, validate, logout} = this.props
-
-        const fields = [values.firstName, values.middleName, values.lastName, values.birthDay, values.birthPlace, values.gender, values.civilStatus, values.citizenship ]
+        const { values, nextPage, handleChange, logout} = this.props
         
         return (
             <React.Fragment>

@@ -6,15 +6,12 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 
 export class FormContactDetails extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, validate, logout} = this.props
-
-        const fields = [values.mobileNumber, values.emailAddress, values.emergencyFullName, values.emergencyMobile, values.relationship]
+        const { values, nextPage, prevPage, handleChange, logout} = this.props
         
         return (
             <React.Fragment>

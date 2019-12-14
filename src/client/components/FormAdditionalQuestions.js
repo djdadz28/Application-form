@@ -11,14 +11,12 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
 
-//linked files are ReferralFields.js, SourceGenerator.js and ListOfSource.js
 
 export class FormAdditionalQuestions extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, checkAdditionalQuestion, validate} = this.props
+        const { values, nextPage, prevPage, handleChange } = this.props
         
         const fields = [ values.aq_currentlyEnrolled, values.aq_studyPlan, values.aq_hireDate, values.aq_convicted, values.aq_hospitalize, values.aq_medicalCondition, values.aq_medication ]
         

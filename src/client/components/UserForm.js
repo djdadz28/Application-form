@@ -38,6 +38,7 @@ export class userForm extends Component {
       currentAddressBrgy: '',
       currentAddressCity: '',
       currentAddressProvince: '',
+      sameAddress: false,
       highSchool: '',
       highSchoolGradYear: '',
       college: '',
@@ -79,12 +80,8 @@ export class userForm extends Component {
       aq_medicalConditionReason: '',
       aq_medication: '',
       aq_medicationReason: '',
-      acceptTerms: false,
-      isError: false,
-      errorTimer: () => setTimeout(() => {
-        this.setState({isError: true})
-      }, 1500)}
-    
+      acceptTerms: false    
+  }
   }
 
   nextPage = (e) => {
@@ -126,7 +123,6 @@ export class userForm extends Component {
         msgTimer()
     }
   }
-  
 
   userLogoutSuccess = () => {
     window.location.reload()
@@ -224,32 +220,20 @@ export class userForm extends Component {
     this.setState({acceptTerms: !this.state.acceptTerms})
   }
 
-  checkfield_filled = (list) => {
-    let timer
-    let msgTimer = () => {
-      let errorHandler = new Promise((resolve, reject) => {
-      this.setState({isError: true})  
-      timer = setTimeout(()=>{
-        resolve(this.setState({isError: false}));
-      }, 2000)
-    })
-
-      errorHandler.then(()=>{
-        clearTimeout(timer)
-        })
-      }
-
-    if(list.length){
-      for(let i = 0; i < list.length; i++){
-        if(list[i].length < 1){
-          msgTimer()
-          
-          return false
-        }
-      }
+  checkSameAddress = () => {
+    this.setState({sameAddress: !this.state.sameAddress})
+    if(!this.state.sameAddress){
+      this.setState({ currentAddressBrgy: this.state.permanentAddressBrgy,
+                      currentAddressCity: this.state.permanentAddressCity,
+                      currentAddressProvince: this.state.permanentAddressProvince
+      })
+    }else{
+      this.setState({ currentAddressBrgy: '',
+                      currentAddressCity: '',
+                      currentAddressProvince: ''
+      })
     }
-    return true
-  }  
+  }
 
     render() {
 
@@ -277,6 +261,7 @@ export class userForm extends Component {
               currentAddressBrgy,
               currentAddressCity,
               currentAddressProvince,
+              sameAddress,
               highSchool,
               highSchoolGradYear,
               college,
@@ -319,7 +304,6 @@ export class userForm extends Component {
               aq_medication,
               aq_medicationReason,
               acceptTerms,
-              isError
               } = this.state
       
       const values = {
@@ -346,6 +330,7 @@ export class userForm extends Component {
               currentAddressBrgy,
               currentAddressCity,
               currentAddressProvince,
+              sameAddress,
               highSchool,
               highSchoolGradYear,
               college,
@@ -388,7 +373,6 @@ export class userForm extends Component {
               aq_medication,
               aq_medicationReason,
               acceptTerms,
-              isError
       }
 
       switch(page){
@@ -425,7 +409,7 @@ export class userForm extends Component {
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  validate={this.checkfield_filled}
+                  checkSameAddress={this.checkSameAddress}
                   logout={this.userLogoutSuccess}
                   />
           )

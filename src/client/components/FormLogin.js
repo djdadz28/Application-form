@@ -4,10 +4,7 @@ import { Container } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
 import QLogo from '../../Qualfon_logo.png'
-import FormControl from '@material-ui/core/FormControl'
-import Input from '@material-ui/core/Input'
 
 
 
@@ -23,7 +20,7 @@ export class FormLogin extends Component {
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} justify="center" alignItems="center" spacing={3} className="textfield-container">
                         <Grid item xs={12} sm={7}>
-                        <img src={QLogo} width="100%"/>
+                        <img src={QLogo} width="100%" alt="Qualfon Logo"/>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <form style={{width: "100%"}} id="login-form" onSubmit={(e)=>{e.preventDefault(); validateUser()}}>

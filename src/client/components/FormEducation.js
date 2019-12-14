@@ -9,14 +9,12 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import Divider from '@material-ui/core/Divider'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
 
 export class FormEducation extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, validate, logout} = this.props
+        const { values, nextPage, prevPage, handleChange, logout} = this.props
 
-        const fields = [values.highSchool, values.highSchoolGradYear ]
 
         return (
             <React.Fragment>
