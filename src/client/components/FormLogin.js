@@ -12,7 +12,7 @@ export class FormLogin extends Component {
 
     render() {
 
-        const { values, handleChange, validateUser} = this.props
+        const { values, handleChange, login} = this.props
         
         return (
             <React.Fragment>
@@ -23,7 +23,7 @@ export class FormLogin extends Component {
                         <img src={QLogo} width="100%" alt="Qualfon Logo"/>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <form style={{width: "100%"}} id="login-form" onSubmit={(e)=>{e.preventDefault(); validateUser()}}>
+                            <form style={{width: "100%"}} id="login-form" onSubmit={login}>
                                     <Grid>
                                     <TextField
                                     variant="outlined"
@@ -32,7 +32,7 @@ export class FormLogin extends Component {
                                     fullWidth
                                     required
                                     defaultValue={''}
-                                    onChange={handleChange('username')}
+                                    onChange={handleChange('email')}
                                     margin="normal"
                                     />
                                     </Grid>
@@ -44,7 +44,7 @@ export class FormLogin extends Component {
                                     fullWidth
                                     required
                                     defaultValue={''}
-                                    onChange={handleChange('user_password')}
+                                    onChange={handleChange('password')}
                                     margin="normal"
                                     />
                                 {values.isError && <Grid item xs={12} sm={12}>

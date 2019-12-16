@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import fire from '../../server/config/Fire'
 import FormPersonalInformation from './FormPersonalInformation'
 import FormContactDetails from './FormContactDetails'
 import FormAddress from './FormAddress'
@@ -12,12 +13,12 @@ import FormSuccess from './FormSuccess'
 import FormLogin from './FormLogin'
 
 export class userForm extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      login: false,
-      username: '',
-      user_password: '',
+      user: {},
+      email: '',
+      password: '',
       page: 0,
       firstName: '',
       middleName: '',
@@ -82,6 +83,38 @@ export class userForm extends Component {
       aq_medicationReason: '',
       acceptTerms: false    
   }
+}
+
+  componentDidMount(){
+    this.authListener()
+  }
+
+  authListener = () => {
+    fire.auth().onAuthStateChanged((user) =>{
+      console.log(user)
+      if(user){
+        this.setState({ user })
+        // localStorage.setItem('user', user.uid)
+      }else{
+        this.setState({ user: null})
+        // localStorage.removeItem('user')
+      }
+    })
+  }
+
+  login = (e) => {
+      e.preventDefault()
+      fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+      this.setState({page: 1})
+      }).catch((error) => {
+          console.log(error)
+          })
+  }
+
+  logout = () => {
+    fire.auth().signOut().then((u) => {
+      window.location.reload()
+    })
   }
 
   nextPage = (e) => {
@@ -102,31 +135,6 @@ export class userForm extends Component {
       this.setState({[input]: e.target.value})
     }
   
-  userLoginSuccess = () => {
-    let timer
-    let msgTimer = () => {
-      let errorHandler = new Promise((resolve, reject) => {
-      this.setState({isError: true})  
-      timer = setTimeout(()=>{
-        resolve(this.setState({isError: false}));
-      }, 2000)
-      })
-
-      errorHandler.then(() => { clearTimeout(timer) })
-    }
-      if(this.state.username.toLowerCase() === "djdadz28" && this.state.user_password.toLowerCase() === "123"){
-        this.setState({login: true})
-        this.setState({page: 1})
-        console.log("logged in")
-      }else{
-        console.log("denied")
-        msgTimer()
-    }
-  }
-
-  userLogoutSuccess = () => {
-    window.location.reload()
-  }
 
   registerNewApplicant = () => {
     this.setState({page: 1,
@@ -191,7 +199,6 @@ export class userForm extends Component {
       aq_medication: '',
       aq_medicationReason: '',
       acceptTerms: false,
-      isError: false,
 
     })
   }
@@ -235,12 +242,78 @@ export class userForm extends Component {
     }
   }
 
+  writeData = () => {
+    fire.database().ref("app_data").set({
+      firstName: this.state.firstName,
+      middleName: this.state.middleName,
+      lastName: this.state.lastName,
+      birthDay: this.state.birthDay,
+      birthPlace: this.state.birthPlace,
+      gender: this.state.gender,
+      civilStatus: this.state.civilStatus,
+      citizenship: this.state.citizenship,
+      mobileNumber: this.state.mobileNumber,
+      emailAddress: this.state.emailAddress,
+      emergencyFullName: this.state.emergencyFullName,
+      emergencyMobile: this.state.emergencyMobile,
+      relationship: this.state.relationship,
+      permanentAddressBrgy: this.state.permanentAddressBrgy,
+      permanentAddressCity: this.state.permanentAddressCity,
+      permanentAddressProvince: this.state.permanentAddressProvince,
+      currentAddressBrgy: this.state.currentAddressBrgy,
+      currentAddressCity: this.state.currentAddressCity,
+      currentAddressProvince: this.state.currentAddressProvince,
+      highSchool: this.state.highSchool,
+      highSchoolGradYear: this.state.highSchoolGradYear,
+      college: this.state.college,
+      collegeGradYear: this.state.collegeGradYear,
+      collegeCourse: this.state.collegeCourse,
+      collegeAttainment: this.state.collegeAttainment,
+      college_2: this.state.college_2,
+      collegeGradYear_2: this.state.collegeGradYear_2,
+      collegeCourse_2: this.state.collegeCourse_2,
+      collegeAttainment_2: this.state.collegeAttainment_2,
+      workBpoExperience: this.state.workBpoExperience,
+      workQualfonEmployee: this.state.workQualfonEmployee,
+      workCompany: this.state.workCompany,
+      workPosition: this.state.workPosition,
+      workDuration: this.state.workDuration,
+      workReasonForLeaving: this.state.workReasonForLeaving,
+      workCompany_2: this.state.workCompany_2,
+      workPosition_2: this.state.workPosition_2,
+      workDuration_2: this.state.workDuration_2,
+      workReasonForLeaving_2: this.state.workReasonForLeaving_2,
+      mainSource: this.state.mainSource,
+      specificSource: this.state.specificSource,
+      referrerFullName: this.state.referrerFullName,
+      referrerID: this.state.referrerID,
+      referrerMobile: this.state.referrerMobile,
+      sourceMethod: this.state.sourceMethod,
+      invitedByRecruiter: this.state.invitedByRecruiter,
+      recruiter: this.state.recruiter,
+      jobFairLocation: this.state.jobFairLocation,
+      aq_currentlyEnrolled: this.state.aq_currentlyEnrolled,
+      aq_numberOfUnits: this.state.aq_numberOfUnits,
+      aq_studyPlan: this.state.aq_studyPlan,
+      aq_hireDate: this.state.aq_hireDate,
+      aq_convicted: this.state.aq_convicted,
+      aq_convictReason: this.state.aq_convictReason,
+      aq_hospitalize: this.state.aq_hospitalize,
+      aq_hospitalizeReason: this.state.aq_hospitalizeReason,
+      aq_medicalCondition: this.state.aq_medicalCondition,
+      aq_medicalConditionReason: this.state.aq_medicalConditionReason,
+      aq_medication: this.state.aq_medication,
+      aq_medicationReason: this.state.aq_medicationReason
+    })
+  }
+
     render() {
 
       const { 
               login,
-              username,
-              user_password,
+              user,
+              email,
+              password,
               page,
               firstName,
               middleName,
@@ -307,9 +380,10 @@ export class userForm extends Component {
               } = this.state
       
       const values = {
+              user,
+              email,
+              password,
               login,
-              username,
-              user_password,      
               page,
               firstName,
               middleName,
@@ -375,13 +449,15 @@ export class userForm extends Component {
               acceptTerms,
       }
 
+
+
       switch(page){
         case 0:
           return(
                   <FormLogin 
                   handleChange={this.handleChange}
                   values={values}
-                  validateUser={this.userLoginSuccess}
+                  login={this.login}
                   />
           )
         case 1:
@@ -390,18 +466,21 @@ export class userForm extends Component {
                   values={values}
                   nextPage={this.nextPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
+                 
           )
         
         case 2:
-          return(<FormContactDetails
+          return(
+                  <FormContactDetails
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
+
           )
         case 3:
           return(<FormAddress
@@ -410,7 +489,7 @@ export class userForm extends Component {
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   checkSameAddress={this.checkSameAddress}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
         case 4:
@@ -419,7 +498,7 @@ export class userForm extends Component {
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
         case 5:
@@ -428,7 +507,7 @@ export class userForm extends Component {
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
         case 6:
@@ -437,7 +516,7 @@ export class userForm extends Component {
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
           case 7:
@@ -446,7 +525,7 @@ export class userForm extends Component {
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
           case 8:
@@ -456,7 +535,7 @@ export class userForm extends Component {
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   checkAcceptTerms={this.checkAcceptTerms}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
                   />
           )
           case 9:
@@ -464,7 +543,8 @@ export class userForm extends Component {
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
-                  logout={this.userLogoutSuccess}
+                  logout={this.logout}
+                  submit={this.writeData}
                   />
           )
 
@@ -473,7 +553,7 @@ export class userForm extends Component {
             <FormSuccess
             values={values}
             registerNewApplicant={this.registerNewApplicant}
-            logout={this.userLogoutSuccess}
+            logout={this.logout}
             />
           )
 
@@ -481,7 +561,7 @@ export class userForm extends Component {
           return (<FormLogin
                   values={values}
                   handleChange={this.handleChange}
-                  validateUser={this.userLoginSuccess}
+                  login={this.login}
                   />)
     }
   }

@@ -14,7 +14,8 @@ export class FormConfirmation extends Component {
 
         
     render() {
-        const { values, nextPage, prevPage, logout } = this.props
+
+        const { values, nextPage, prevPage, logout, submit } = this.props
 
         const listOfLabel = [
             {
@@ -45,6 +46,7 @@ export class FormConfirmation extends Component {
         ]
 
         const confirmlist = listOfLabel.map(list => <ConfirmGenerator key={list.id} values={list.content} labelName={list.id}/>)
+          
         return (
             <React.Fragment>
             <NavBar navTitle="Confirmation" logout={logout}/>
@@ -72,7 +74,7 @@ export class FormConfirmation extends Component {
                             </Button>
                         </Grid>
                         <Grid item xs={6} sm={6}container justify="flex-end">
-                            <Button variant="contained" color="primary" onClick={nextPage}>
+                            <Button variant="contained" color="primary" onClick={() => {submit(); nextPage()}}>
                                 Confirm and Submit
                             </Button>
                         </Grid>

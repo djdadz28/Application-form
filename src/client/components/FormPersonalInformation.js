@@ -73,13 +73,13 @@ export class FormPersonalInformation extends Component {
                                     <Grid item xs={12} sm={6}>
                                         <TextField
                                         id="date"
-                                        label="Birthday"
+                                        label="Birthdate"
                                         type="date"
                                         InputLabelProps={{
                                         shrink: true,
                                         }}
                                         fullWidth
-                                        required
+                                        required={false}
                                         defaultValue={values.birthDay}
                                         onChange={handleChange('birthDay')}
                                         />
@@ -88,10 +88,10 @@ export class FormPersonalInformation extends Component {
                                         <TextField
                                         id="outlined-basic"
                                         variant="outlined"
-                                        label="Birth Place"
-                                        placeholder="City/Municipality only"
+                                        label="Birth Place (City)"
+                                        placeholder="e.g. Dumaguete"
                                         fullWidth
-                                        required
+                                        required={false}
                                         defaultValue={values.birthPlace}
                                         onChange={handleChange('birthPlace')}
                                         />
@@ -106,7 +106,7 @@ export class FormPersonalInformation extends Component {
                                         labelWidth={52}
                                         defaultValue={values.gender}
                                         onChange={handleChange('gender')}
-                                        required
+                                        required={false}
                                         >
                                         <option value="" />
                                         <option value="Male">Male</option>
@@ -124,7 +124,7 @@ export class FormPersonalInformation extends Component {
                                         labelWidth={80}
                                         defaultValue={values.civilStatus}
                                         onChange={handleChange('civilStatus')}
-                                        required
+                                        required={false}
                                         >
                                         <option value="" />
                                         <option value="Single">Single</option>
@@ -144,7 +144,7 @@ export class FormPersonalInformation extends Component {
                                         fullWidth
                                         defaultValue={values.citizenship}
                                         onChange={handleChange('citizenship')}
-                                        required
+                                        required={false}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
