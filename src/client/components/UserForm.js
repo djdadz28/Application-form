@@ -11,6 +11,7 @@ import FormTermsAndConditions from './FormTermsAndConditions'
 import FormConfirmation from './FormConfirmation'
 import FormSuccess from './FormSuccess'
 import FormLogin from './FormLogin'
+import FormPrint from './FormPrint'
 
 export class userForm extends Component {
   constructor(props){
@@ -243,7 +244,7 @@ export class userForm extends Component {
   }
 
   writeData = () => {
-    fire.database().ref("app_data").set({
+    fire.database().ref("app_data").push({
       firstName: this.state.firstName,
       middleName: this.state.middleName,
       lastName: this.state.lastName,
@@ -450,15 +451,15 @@ export class userForm extends Component {
       }
 
 
-
       switch(page){
         case 0:
           return(
-                  <FormLogin 
-                  handleChange={this.handleChange}
-                  values={values}
-                  login={this.login}
-                  />
+                  <FormPrint/>
+                  // <FormLogin 
+                  // handleChange={this.handleChange}
+                  // values={values}
+                  // login={this.login}
+                  // />
           )
         case 1:
           return(

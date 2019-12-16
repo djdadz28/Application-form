@@ -196,7 +196,7 @@ export class FormWorkExperience extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" htmlFor="form-work-experience">
+                                        <Button variant="contained" color="primary" type="submit" form="form-work-experience">
                                             Continue
                                         </Button>
                                     </Grid>

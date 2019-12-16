@@ -189,7 +189,7 @@ export class FormEducation extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" for="form-education">
+                                        <Button variant="contained" color="primary" type="submit" htlmfor="form-education">
                                             Continue
                                         </Button>
                                     </Grid>

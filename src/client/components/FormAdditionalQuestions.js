@@ -236,7 +236,7 @@ export class FormAdditionalQuestions extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" htmlFor="form-Additional-questions">
+                                        <Button variant="contained" color="primary" type="submit" form="form-Additional-questions">
                                             Continue
                                         </Button>
                                     </Grid>

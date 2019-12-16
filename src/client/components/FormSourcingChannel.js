@@ -155,7 +155,7 @@ export class FormSourcingChannel extends Component {
                                             </Button>
                                         </Grid>
                                         <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" htmlFor="form-sourcing-channel">
+                                        <Button variant="contained" color="primary" type="submit" form="form-sourcing-channel">
                                             Continue
                                         </Button>
                                     </Grid>

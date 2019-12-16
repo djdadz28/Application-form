@@ -98,7 +98,7 @@ export class FormContactDetails extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" htlmFor="form-contact-info">
+                                        <Button variant="contained" color="primary" type="submit" form="form-contact-info">
                                             Continue
                                         </Button>
                                     </Grid>

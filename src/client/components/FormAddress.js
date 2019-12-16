@@ -211,7 +211,7 @@ export class FormAddress extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={6} sm={6}container justify="flex-end">
-                                        <Button variant="contained" color="primary" type="submit" htmlFor="form-address">
+                                        <Button variant="contained" color="primary" type="submit" form="form-address">
                                             Continue
                                         </Button>
                                     
