@@ -1,0 +1,7 @@
+export const printList = {
+    privacy_1: "All Personal Information collected in or submitted together with this form shall be used for recruitment, pooling, screening and background check purposes only and shall form part of your employee record in case of a successful hire. This information may be stored or transferred to affiliates or third parties providing services to Qualfon, which may be located within or outside the Philippines. Qualfon may also disclose information, to government entities in response to a court order or as required by applicable laws. Your record shall be retained for a maximum period of _______ and shall be disposed thereafter or earlier upon determination that there is no more business need to keep it. The collection, use, storage, retention, disclosure and disposal of your data are carried out under conditions of confidentiality and security consistent with the Data Protection Act.",
+    privacy_2: "A complete list of your rights is available on NPCs website: https://www.privacy.gov.ph. For any requests or concerns related to your Personal Information, our policy or this privacy notice you may approach any of our recruitment officer or you may reach our Data Protection Officer via email: privacy@qualfon.com",
+    privacy_consent: " I am aware of my rights as a Data Subject. I have read and understood the Qualfon Privacy Notice and consent to the processing of my Personal Information."
+}
+
+export default printList

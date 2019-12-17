@@ -12,6 +12,7 @@ import FormConfirmation from './FormConfirmation'
 import FormSuccess from './FormSuccess'
 import FormLogin from './FormLogin'
 import FormPrint from './FormPrint'
+import PrintTest from './PrintTest'
 
 export class userForm extends Component {
   constructor(props){
@@ -454,7 +455,7 @@ export class userForm extends Component {
       switch(page){
         case 0:
           return(
-                  <FormPrint/>
+                <FormPrint/>
                   // <FormLogin 
                   // handleChange={this.handleChange}
                   // values={values}

@@ -79,7 +79,7 @@ export class FormPersonalInformation extends Component {
                                         shrink: true,
                                         }}
                                         fullWidth
-                                        required={false}
+                                        required
                                         defaultValue={values.birthDay}
                                         onChange={handleChange('birthDay')}
                                         />
@@ -91,7 +91,7 @@ export class FormPersonalInformation extends Component {
                                         label="Birth Place (City)"
                                         placeholder="e.g. Dumaguete"
                                         fullWidth
-                                        required={false}
+                                        required
                                         defaultValue={values.birthPlace}
                                         onChange={handleChange('birthPlace')}
                                         />
@@ -106,7 +106,7 @@ export class FormPersonalInformation extends Component {
                                         labelWidth={52}
                                         defaultValue={values.gender}
                                         onChange={handleChange('gender')}
-                                        required={false}
+                                        required
                                         >
                                         <option value="" />
                                         <option value="Male">Male</option>
@@ -124,7 +124,7 @@ export class FormPersonalInformation extends Component {
                                         labelWidth={80}
                                         defaultValue={values.civilStatus}
                                         onChange={handleChange('civilStatus')}
-                                        required={false}
+                                        required
                                         >
                                         <option value="" />
                                         <option value="Single">Single</option>
@@ -144,7 +144,7 @@ export class FormPersonalInformation extends Component {
                                         fullWidth
                                         defaultValue={values.citizenship}
                                         onChange={handleChange('citizenship')}
-                                        required={false}
+                                        required
                                         />
                                     </Grid>
                                     <Grid item xs={12}>

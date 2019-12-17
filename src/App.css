@@ -38,3 +38,148 @@ h4{
   text-align: justify;
 }
 
+/* App form pdf */
+
+#app-form-container {
+  color:#000;
+  /* background-image: url("appform.jpg"); */
+  background-repeat: no-repeat;
+  background-color: #fff;
+  width: 8.5in;
+  height: 13in;
+  margin: 0 auto;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-form-innerpadding {
+  padding:0.05in;
+}
+
+.app-form-header{
+  text-align: left;
+}
+
+.app-form-logo > img {
+  width: 2.3in;
+  margin-top: 0.0in;
+  margin-left: 0.15in;
+}
+
+.app-form-privacy {
+  padding:0.05in 0.05in;
+  text-align: center;
+  border:#000 2px solid
+}
+
+.app-form-privacy > p, .app-form-privacy > div {
+  font-size: 8.5px;
+  font-weight: bold;
+  padding:0.05in 0;
+}
+
+.app-form-privacy > h5 {
+  font-size: 10px;
+}
+
+.app-form-privacy-sign {
+  text-align: right;
+  margin-top:0.3in;
+}
+
+.app-form-privacy-sign > span {
+  border-top: #000 1px solid;
+}
+
+.privacy-label {
+  margin-bottom: -0.05in;
+}
+
+.app-form-divider {
+  border: #000 2px solid;
+  margin-top: -2px;
+  height: AUTO;
+  font-size: 14px;
+}
+
+.applicant-name {
+  margin: 0.1in 0;
+  width:8in;
+  display: flex;
+}
+
+.name-label {
+  width:2in;
+  text-align: left;
+  margin-left: 0.2in;
+  margin-top: 0;
+  border-bottom: black 1px solid ;
+}
+
+.name-label > h5 {
+  font-size: 10px;
+  margin:0;
+  padding-bottom: 0.03in;
+  color: #8d8d8d;
+}
+
+.name-label > span {
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 0.05in;
+}
+
+.checkbox-label {
+  text-align: left;
+  margin-left: 0.2in;
+  margin-top: 0;
+}
+
+.checkbox-label > span {
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 0.05in;
+}
+
+.checkbox-answer {
+  border-bottom: #000 1px solid;
+}
+
+.checkbox-label {
+  color: #8d8d8d;
+}
+
+.checkbox-label > .checkbox-answer {
+  color: #000;
+}
+
+.check-enrolled {
+  position: absolute;
+  margin: -2px 0 0 5.54in;
+  border:2px black solid;
+  width:2.8in;
+  height:0.94in;
+}
+
+.end-agreement {
+  color: #000;
+  width: 8.35in;
+  text-align: center;
+  font-size:8px;
+  justify-content: center;
+}
+
+.end-agreement > span {
+  text-align:center ;
+}
+
+.app-form-agreement-sign {
+  text-align: right;
+  margin-top:0.3in;
+}
+
+.app-form-agreement-sign > span {
+  border-top: #000 1px solid;
+  font-size: 11px;
+  font-weight: bold;
+}
