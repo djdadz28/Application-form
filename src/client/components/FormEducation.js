@@ -13,12 +13,12 @@ import Divider from '@material-ui/core/Divider'
 export class FormEducation extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, logout} = this.props
+        const { values, home, nextPage, prevPage, handleChange, logout} = this.props
 
 
         return (
             <React.Fragment>
-            <NavBar navTitle="Educational Background" logout={logout}/>
+            <NavBar navTitle="Educational Background" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={2} className="textfield-container">
                         <Grid item xs={12}>

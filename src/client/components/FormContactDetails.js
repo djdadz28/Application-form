@@ -11,11 +11,11 @@ import Divider from '@material-ui/core/Divider'
 export class FormContactDetails extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, logout} = this.props
+        const { values, home, nextPage, prevPage, handleChange, logout} = this.props
         
         return (
             <React.Fragment>
-            <NavBar navTitle="Contact Information" logout={logout}/>
+            <NavBar navTitle="Contact Information" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={2} className="textfield-container">
                         <Grid item xs={12}>
@@ -49,6 +49,18 @@ export class FormContactDetails extends Component {
                                         defaultValue={values.emailAddress}
                                         onChange={handleChange('emailAddress')}
                                         required
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={8}>
+                                        <TextField
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        label="Alternate Mobile No. (Optional)"
+                                        placeholder="e.g. 09987654321"
+                                        className="textfield-fullwidth"
+                                        type="number"
+                                        defaultValue={values.alternateMobile}
+                                        onChange={handleChange('alternateMobile')}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>

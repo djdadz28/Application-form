@@ -8,10 +8,11 @@ export class NavBar extends Component {
 
     render() {
 
-        const { logout, navTitle } = this.props
+        const { home, logout, navTitle } = this.props
         return (
                 <AppBar position="static">
                 <Toolbar>
+                {navTitle !== "Qualfon Application Form" && <Button color="inherit" tabIndex={-1} onClick={home} disableFocusRipple disableRipple>Home</Button>}
                 <Typography variant="h6" style={{flex: 1}}>
                     {navTitle}
                 </Typography>

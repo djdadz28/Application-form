@@ -22,7 +22,7 @@ import Divider from '@material-ui/core/Divider'
 export class FormSourcingChannel extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange, logout} = this.props
+        const { home, values, nextPage, prevPage, handleChange, logout} = this.props
 
         const listOfRecruiters = [
                 "Aileen",
@@ -60,7 +60,7 @@ export class FormSourcingChannel extends Component {
         
         return (
             <React.Fragment>
-            <NavBar navTitle="Sourcing Channel" logout={logout}/>
+            <NavBar navTitle="Sourcing Channel" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={3} className="textfield-container" alignItems="center" justify="center">
                         <Grid item xs={12}>

@@ -21,12 +21,12 @@ export class FormWorkExperience extends Component {
 
 
     render() {
-        const { values, nextPage, prevPage, handleChange, logout} = this.props
+        const { values, home, nextPage, prevPage, handleChange, logout} = this.props
         
 
         return (
             <React.Fragment>
-            <NavBar navTitle="Work Experience" logout={logout}/>
+            <NavBar navTitle="Work Experience" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={3} className="textfield-container">
                         <Grid item xs={12}>

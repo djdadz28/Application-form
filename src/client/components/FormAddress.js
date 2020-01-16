@@ -16,7 +16,7 @@ export class FormAddress extends Component {
 
 
     render() {
-        const { values, nextPage, prevPage, handleChange, logout, checkSameAddress} = this.props
+        const { values, home, nextPage, prevPage, handleChange, logout, checkSameAddress} = this.props
 
         const generateProvince = () => {
             const listOfProvinces = []
@@ -70,7 +70,7 @@ export class FormAddress extends Component {
 
         return (
             <React.Fragment>``
-            <NavBar navTitle="Address" logout={logout}/>
+            <NavBar navTitle="Address" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position={'row'} spacing={2} className="textfield-container">
                         <Grid item xs={12}>

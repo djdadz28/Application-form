@@ -12,7 +12,8 @@ import FormConfirmation from './FormConfirmation'
 import FormSuccess from './FormSuccess'
 import FormLogin from './FormLogin'
 import FormPrint from './FormPrint'
-import PrintTest from './PrintTest'
+import SelectionPage from './SelectionPage'
+import FormViewRecords from './FormViewRecords'
 
 export class userForm extends Component {
   constructor(props){
@@ -116,6 +117,24 @@ export class userForm extends Component {
   logout = () => {
     fire.auth().signOut().then((u) => {
       window.location.reload()
+    })
+  }
+
+  home = () => {
+    this.setState(currentPage => {
+      return {page: 0}
+    })
+  }
+
+  register = () => {
+    this.setState(currentPage => {
+      return {page: 2}
+    })
+  }
+
+  viewRecords = () => {
+    this.setState(currentPage => {
+      return {page: 11}
     })
   }
 
@@ -326,6 +345,7 @@ export class userForm extends Component {
               civilStatus,
               citizenship,
               mobileNumber,
+              alternateMobile,
               emailAddress,
               emergencyFullName,
               emergencyMobile,
@@ -396,6 +416,7 @@ export class userForm extends Component {
               civilStatus,
               citizenship,
               mobileNumber,
+              alternateMobile,
               emailAddress,
               emergencyFullName,
               emergencyMobile,
@@ -455,25 +476,37 @@ export class userForm extends Component {
       switch(page){
         case 0:
           return(
-                <FormPrint/>
                   // <FormLogin 
                   // handleChange={this.handleChange}
                   // values={values}
                   // login={this.login}
                   // />
+                  <FormViewRecords
+                  />
           )
         case 1:
+          return(
+                  <SelectionPage
+                  values={values}
+                  register={this.registerNewApplicant}
+                  viewRecords={this.viewRecords}
+                  />
+          )
+
+        
+        case 2:
           return(
                   <FormPersonalInformation
                   values={values}
                   nextPage={this.nextPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
                  
           )
         
-        case 2:
+        case 3:
           return(
                   <FormContactDetails
                   values={values}
@@ -481,10 +514,11 @@ export class userForm extends Component {
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
 
           )
-        case 3:
+        case 4:
           return(<FormAddress
                   values={values}
                   nextPage={this.nextPage}
@@ -492,45 +526,50 @@ export class userForm extends Component {
                   handleChange={this.handleChange}
                   checkSameAddress={this.checkSameAddress}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-        case 4:
+        case 5:
           return(<FormEducation
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-        case 5:
+        case 6:
           return(<FormWorkExperience
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-        case 6:
+        case 7:
           return(<FormSourcingChannel
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-          case 7:
+          case 8:
           return(<FormAdditionalQuestions
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   handleChange={this.handleChange}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-          case 8:
+          case 9:
           return(<FormTermsAndConditions
                   values={values}
                   nextPage={this.nextPage}
@@ -538,25 +577,31 @@ export class userForm extends Component {
                   handleChange={this.handleChange}
                   checkAcceptTerms={this.checkAcceptTerms}
                   logout={this.logout}
+                  home={this.home}
                   />
           )
-          case 9:
+          case 10:
           return(<FormConfirmation
                   values={values}
                   nextPage={this.nextPage}
                   prevPage={this.prevPage}
                   logout={this.logout}
                   submit={this.writeData}
+                  home={this.home}
                   />
           )
 
-          case 10:
+          case 11:
           return(
-            <FormSuccess
-            values={values}
-            registerNewApplicant={this.registerNewApplicant}
-            logout={this.logout}
-            />
+                <FormPrint
+                values={values}
+                />
+
+            // <FormSuccess
+            // values={values}
+            // registerNewApplicant={this.registerNewApplicant}
+            // logout={this.logout}
+            // />
           )
 
         default:

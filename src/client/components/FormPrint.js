@@ -1,14 +1,5 @@
 import React, { Component } from 'react'
-import PageTracker from './PageTracker'
-import { Container } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
-import NavBar from './NavBar'
 import bg from './BG.js'
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
@@ -29,12 +20,15 @@ export class FormPrint extends Component {
             doc.save('test.pdf')
         }
 
-        download = () => {
+    download = () => {
+        
+        html2canvas(document.getElementById("app-form-container")).then(function(canvas) {
             const doc = new jsPDF('p', 'in', 'legal')
-            html2canvas(document.body).then(function(canvas) {
-                document.body.appendChild(canvas)
-            })
-        }
+            const img = canvas.toDataURL("image/png")
+            doc.addImage(img, 'JPEG', 0, 0)
+            doc.save('test.pdf')
+        })
+    }
 
 
     render() {
@@ -42,8 +36,9 @@ export class FormPrint extends Component {
         const { values, nextPage, handleChange, logout} = this.props
 
         return (
-                <div id = "app-form-container">
-                    <div className = "app-form-innerpadding">
+            
+                <div id = "app-form-container">                
+                    <div id = "app-form-printable" className = "app-form-innerpadding">
                         <div className = "app-form-header">
                             <span className = "app-form-logo"><img src={QLogo} alt="Qualfon Logo"/></span>
                             <span style={{
@@ -71,65 +66,65 @@ export class FormPrint extends Component {
                                 <div className = "applicant-name">
                                     <div className = "name-label">
                                         <h5>LAST NAME</h5>
-                                        <span>ELECO</span>
+                                        <span>{values.lastName}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "3.5in"}}>
                                         <h5>FIRST NAME</h5>
-                                        <span>DJ DADZ</span>
+                                        <span>{values.firstName}</span>
                                     </div>
                                     <div className = "name-label">
                                         <h5>MIDDLE NAME</h5>
-                                        <span>MONTERO</span>
+                                        <span>{values.middleName}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label">
                                         <h5>BIRTH DATE</h5>
-                                        <span>DECEMBER 28, 1993</span>
+                                        <span>{values.birthDay}</span>
                                     </div>
                                     <div className = "name-label">
                                         <h5>BIRTH PLACE</h5>
-                                        <span>CANLAON</span>
+                                        <span>{values.birthPlace}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "0.8in"}}>
                                         <h5>GENDER</h5>
-                                        <span>MALE</span>
+                                        <span>{values.gender}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1in"}}>
                                         <h5>CIVIL STATUS</h5>
-                                        <span>SINGLE</span>
+                                        <span>{values.civilStatus}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.2in"}}>
                                         <h5>CITIZENSHIP</h5>
-                                        <span>FILIPINO</span>
+                                        <span>{values.citizenship}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label">
                                         <h5>CONTACT NUMBER</h5>
-                                        <span>09186472985</span>
+                                        <span>{values.mobileNumber}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "3.4in"}}>
                                         <h5>EMAIL ADDRESS</h5>
-                                        <span>DJDADZ28@GMAIL.COM</span>
+                                        <span>{values.emailAddress}</span>
                                     </div>
                                     <div className = "name-label">
                                         <h5>ALTERNATE CONTACT NUMBER</h5>
-                                        <span>09187654321</span>
+                                        <span>{values.alternateMobile}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "4in"}}>
                                         <h5>EMERGENCY CONTACT PERSON</h5>
-                                        <span>MYCA MONTERO</span>
+                                        <span>{values.emergencyFullName}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.9in"}}>
                                         <h5>CONTACT NUMBER</h5>
-                                        <span>09181234567</span>
+                                        <span>{values.emergencyMobile}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>RELATIONSHIP</h5>
-                                        <span>SISTER</span>
+                                        <span>{values.relationship}</span>
                                     </div>
                                 </div>
                             </div>
@@ -139,27 +134,27 @@ export class FormPrint extends Component {
                                     <div><br/></div>
                                     <div className = "checkbox-label" >
                                         <span>ANY PLANS OF PURSUING STUDIES</span>
-                                        <span className = "checkbox-answer">YES</span>
+                                        <span className = "checkbox-answer">{values.aq_studyPlan}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>CURRENTLY ENROLLED?</span>
-                                        <span className = "checkbox-answer">YES</span>
+                                        <span className = "checkbox-answer">{values.aq_currentlyEnrolled}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>NUMBER OF UNITS:</span>
-                                        <span className = "checkbox-answer">15</span>
+                                        <span className = "checkbox-answer">{values.aq_numberOfUnits}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "5in"}}>
                                         <h5>PERMANENT ADDRESS</h5>
-                                        <span>MABIGO, CANLAON CITY, NEGROS ORIENTAL</span>
+                                        <span>{`${values.permanentAddressBrgy}, ${values.permanentAddressCity}, ${values.permanentAddressProvince}`}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "5in"}}>
                                         <h5>CURRENT ADDRESS</h5>
-                                        <span>PULANTUBIG, DUMAGUETE CITY, NEGROS ORIENTAL</span>
+                                        <span>{`${values.currentAddressBrgy}, ${values.currentAddressCity}, ${values.currentAddressProvince}`}</span>
                                     </div>
                                 </div>
                                 
@@ -169,53 +164,53 @@ export class FormPrint extends Component {
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "6in"}}>
                                         <h5>HIGH SCHOOL</h5>
-                                        <span>ST. JOSEPH COLLEGE OF CANLAON</span>
+                                        <span>{values.highSchool}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>YEAR ATTENDEND</h5>
-                                        <span>2009</span>
+                                        <span>{values.highSchoolGradYear}</span>
                                     </div>
                                     
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "6in"}}>
                                         <h5>COLLEGE/UNIVERSITY</h5>
-                                        <span>NEGROS ORIENTAL STATE UNIVERSITY</span>
+                                        <span>{values.college}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>YEAR ATTENDEND</h5>
-                                        <span>2019</span>
+                                        <span>{values.collegeGradYear}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "6in"}}>
                                         <h5>COURSE OF STUDY</h5>
-                                        <span>BS - COMPUTER SCIENCE</span>
+                                        <span>{values.collegeCourse}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>ATTAINMENT</h5>
-                                        <span>4 YEAR GRADUATE</span>
+                                        <span>{values.collegeAttainment}</span>
                                     </div>
                                 </div>
                                 <br/>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "6in"}}>
                                         <h5>POST GRADUATE / 2ND DEGREE</h5>
-                                        <span>SILLIMAN UNIVERSITY</span>
+                                        <span>{values.college_2}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>YEAR ATTENDEND</h5>
-                                        <span>2023</span>
+                                        <span>{values.collegeGradYear_2}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "6in"}}>
                                         <h5>COURSE OF STUDY</h5>
-                                        <span>MASTER IN COMPUTER SCIENCE</span>
+                                        <span>{values.collegeCourse_2}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>ATTAINMENT</h5>
-                                        <span>3RD YEAR LEVEL</span>
+                                        <span>{values.collegeAttainment_2}</span>
                                     </div>
                                 </div>
                             </div>
@@ -224,48 +219,48 @@ export class FormPrint extends Component {
                                 <div className = "applicant-name">
                                     <div className = "checkbox-label" style={{width: "3in"}}>
                                         <span>WITH BPO/CALL CENTER EXPERIENCE?</span>
-                                        <span className = "checkbox-answer">YES</span>
+                                        <span className = "checkbox-answer">{values.workBpoExperience}</span>
                                     </div>
                                     <div className = "checkbox-label" style={{width: "3in"}}>
                                         <span>FORMER QUALFON PHILIPPINES INC. EMPLOYEE?</span>
-                                        <span className = "checkbox-answer">YES</span>
+                                        <span className = "checkbox-answer">{values.workQualfonEmployee}</span>
                                     </div>
                                 </div>
                                 
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "4in"}}>
                                         <h5>COMPANY NAME</h5>
-                                        <span>QUALFON PHILIPPINES INC</span>
+                                        <span>{values.workCompany}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "2in"}}>
                                         <h5>POSITION</h5>
-                                        <span>RECRUITMENT SPECIALIST</span>
+                                        <span>{values.workPosition}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>DURATION</h5>
-                                        <span>1 - 2 YEARS</span>
+                                        <span>{values.workDuration}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "2in"}}>
                                         <h5>REASON FOR LEAVING</h5>
-                                        <span>I GOT TERMINATED</span>
+                                        <span>{values.workReasonForLeaving}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "4in"}}>
                                         <h5>COMPANY NAME</h5>
-                                        <span>QUALFON PHILIPPINES INC</span>
+                                        <span>{values.workCompany_2}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "2in"}}>
                                         <h5>POSITION</h5>
-                                        <span>RECRUITMENT SPECIALIST</span>
+                                        <span>{values.workPosition_2}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>DURATION</h5>
-                                        <span>1 - 2 YEARS</span>
+                                        <span>{values.workDuration_2}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "2in"}}>
                                         <h5>REASON FOR LEAVING</h5>
-                                        <span>I GOT TERMINATED</span>
+                                        <span>{values.workReasonForLeaving_2}</span>
                                     </div>
                                 </div>
                             </div>
@@ -274,29 +269,29 @@ export class FormPrint extends Component {
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "1.1in"}}>
                                         <h5>SOURCING METHOD</h5>
-                                        <span>PHONESCREENED</span>
+                                        <span>{values.sourceMethod}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "3in"}}>
                                         <h5>SOURCING CHANNEL</h5>
-                                        <span>EMPLOYEE REFERRAL (ERP)</span>
+                                        <span>{values.specificSource}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1in"}}>
                                         <h5>RECRUITER</h5>
-                                        <span>JIJIE</span>
+                                        <span>{values.recruiter}</span>
                                     </div>
                                 </div>
                                 <div className = "applicant-name">
                                     <div className = "name-label" style={{width: "4in"}}>
                                         <h5>NAME OF REFERRER</h5>
-                                        <span>AILEEN DURAN</span>
+                                        <span>{values.referrerFullName}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "2in"}}>
                                         <h5>CONTACT NUMBER</h5>
-                                        <span>09189876543</span>
+                                        <span>{values.referrerMobile}</span>
                                     </div>
                                     <div className = "name-label" style={{width: "1.5in"}}>
                                         <h5>EID NUMBER</h5>
-                                        <span>4000</span>
+                                        <span>{values.referrerID}</span>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +300,7 @@ export class FormPrint extends Component {
                                 <div className = "applicant-name" style={{display: "block"}}>
                                     <div className = "checkbox-label" >
                                         <span>AVAILABILITY TO START:</span>
-                                        <span className = "checkbox-answer">DECEMBER 20, 2019</span>
+                                        <span className = "checkbox-answer">{values.aq_hireDate}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>IF HIRED, ARE YOU WILLING TO SUBMIT AND PASS A CONTROLLED SUBSTANCE TEST?</span>
@@ -313,26 +308,29 @@ export class FormPrint extends Component {
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>HAVE YOU EVER BEEN HOSPITALIZED OR HAVE UNDERGONE SURGERY BEFORE?</span>
-                                        <span className = "checkbox-answer">NO</span>
+                                        <span className = "checkbox-answer">{values.aq_hospitalize}</span>
                                         <span className = "">| PLEASE SPECIFY:</span>
+                                        <span className = "checkbox-answer">{values.aq_hospitalizeReason}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>DO YOU HAVE ANY PRE-EXISTING MEDICAL CONDITIONS?</span>
-                                        <span className = "checkbox-answer">NO</span>
+                                        <span className = "checkbox-answer">{values.aq_medicalCondition}</span>
                                         <span className = "">| PLEASE SPECIFY:</span>
+                                        <span className = "checkbox-answer">{values.aq_medicalConditionReason}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>ARE YOU TAKING ANY KIND OR FORM OF MEDICATION?</span>
-                                        <span className = "checkbox-answer">NO</span>
+                                        <span className = "checkbox-answer">{values.aq_medication}</span>
                                         <span className = "">| PLEASE SPECIFY:</span>
+                                        <span className = "checkbox-answer">{values.aq_medicationReason}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>HAVE YOU EVER BEEN CONVICTED OF A CRIMINAL OFFENSE(FELONY OR MISDEMEANOR)?</span>
-                                        <span className = "checkbox-answer">NO</span>
+                                        <span className = "checkbox-answer">{values.aq_convicted}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span>IF YES, PLEASE SPECIFY THE NATURE OF THE OFFENSE INCLUDING DETAILS OF CONVICTION.</span>
-                                        <span className = "checkbox-answer">I WAS ACCUSED OF BEING A PEDOPHILE</span>
+                                        <span className = "checkbox-answer">{values.aq_convictReason}</span>
                                     </div>
                                     <div className = "checkbox-label" >
                                         <span style={{fontSize: "8px", fontWeight: "400", fontStyle: "italic"}}>(Note: No applicant will be denied of employment solely on the grounds of conviction of a criminal offense. The date of the offense, the nature of the offense, including any significant details that affect the description of the event, and the surrounding circumstances and the relevance of the offense to the position(s) applied for may, however, be considered.)</span>
@@ -348,9 +346,12 @@ export class FormPrint extends Component {
                             </div>
                         </div>          
                     </div>
-                    <Button type="submit" onClick={this.download}>Print!</Button>
+                    {/* <Button type="submit" onClick={this.download}>Print!</Button> */}
+                    <div className="no-print">
+                        <Button type="submit" onClick={()=> window.print()}>Print!</Button>
+                    </div>
+                    
                 </div>
-                
         )
     }
 }

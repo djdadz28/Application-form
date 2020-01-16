@@ -183,3 +183,14 @@ h4{
   font-size: 11px;
   font-weight: bold;
 }
+
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
+  }
+}
+
+.selectionPane {
+  height: 0.8in;
+  width: 100%;
+}

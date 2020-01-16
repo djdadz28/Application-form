@@ -16,7 +16,7 @@ import FormLabel from '@material-ui/core/FormLabel'
 export class FormAdditionalQuestions extends Component {
 
     render() {
-        const { values, nextPage, prevPage, handleChange } = this.props
+        const { values, home, nextPage, prevPage, handleChange, logout} = this.props
         
         const fields = [ values.aq_currentlyEnrolled, values.aq_studyPlan, values.aq_hireDate, values.aq_convicted, values.aq_hospitalize, values.aq_medicalCondition, values.aq_medication ]
         
@@ -36,7 +36,7 @@ export class FormAdditionalQuestions extends Component {
 
         return (
             <React.Fragment>
-            <NavBar navTitle="Additional Questions"/>
+            <NavBar navTitle="Additional Questions" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position='row' spacing={3} className="textfield-container" alignItems="center" justify="center">
                         <Grid item xs={12}>

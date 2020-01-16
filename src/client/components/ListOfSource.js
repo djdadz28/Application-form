@@ -2,10 +2,13 @@ export const sourceList = [{
         id: "Referrals",
         content: [
             "Employee Referral (ERP)",
-            "Applicant Referral (ARP)"
+            "Applicant Referral (ARP)",
+            "Pedicab Driver Members Referral",
+            "University Referral (URP)",
+            "External Referral (EXRP)"
         ]},
         {
-        id: "Social Media",
+        id: "Online",
         content: [
             "Facebook",
             "Twitter",
@@ -13,18 +16,7 @@ export const sourceList = [{
             "Whatsapp",
             "Snapchat",
             "Instagram",
-            "Viber"
-        ]},
-        {
-        id: "Job Fairs",
-        content: [
-            "Local Job Fair",
-            "Provincial Job Fair",
-            "University Job Fair"
-        ]},
-        {
-        id: "Online Paid Job Sites",
-        content : [
+            "Viber",
             "Ayosbuhay",
             "Bestjobs",
             "Careerbuilder",
@@ -47,7 +39,15 @@ export const sourceList = [{
             "Trovit",
             "Trueclassifieds",
             "Worksvianet",
-             "Cresendo"
+            "JobYoda"
+        ]},
+        {
+        id: "Offsite",
+        content: [
+            "Career Ambassadors",
+            "Local Job Fair",
+            "Provincial Job Fair",
+            "University Job Fair"
         ]},
         {
         id: "Advertisements",
@@ -67,7 +67,8 @@ export const sourceList = [{
             "Print Ads - Brochures",
             "Tv Ads - Sky Cable",
             "Tv Ads - Abs-Cbn",
-            "Tv Ads - Fil Products"
+            "Tv Ads - Fil Products",
+            "Word of Mouth"
         ]},
         {
         id: "Training Centers",
@@ -82,9 +83,32 @@ export const sourceList = [{
             "CCA"
         ]},
         {
-        id: "Recruitment Drive",
+        id: "TAB",
+        content: [
+            "T-ERP",
+            "T-ARP",
+            "T-EXRP",
+            "T-Online",
+            "T-Offsite",
+            "T-Advertisement",
+            "T-Rehire",
+            "T-Training Centers",
+            "T-Recruiting Agency"
+        ]},
+        {
+        id: "Internal Application",
         content: [
             "Internal Application"
+        ]},
+        {
+        id: "Rehire",
+        content: [
+            "Rehire"
+        ]},
+        {
+        id: "Recruiting Agency",
+        content: [
+            "Cresendo"
         ]}
 
 ]

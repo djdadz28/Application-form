@@ -15,7 +15,7 @@ export class FormConfirmation extends Component {
         
     render() {
 
-        const { values, nextPage, prevPage, logout, submit } = this.props
+        const { values, home, nextPage, prevPage, logout, submit } = this.props
 
         const listOfLabel = [
             {
@@ -49,7 +49,7 @@ export class FormConfirmation extends Component {
           
         return (
             <React.Fragment>
-            <NavBar navTitle="Confirmation" logout={logout}/>
+            <NavBar navTitle="Confirmation" logout={logout} home={home}/>
                 <Container className="main-container" maxWidth="sm">
                     <Grid container position='row' spacing={3} className="textfield-container" alignItems="center" justify="center">
                         <Grid item xs={12}>
